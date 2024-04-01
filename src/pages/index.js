@@ -1,65 +1,41 @@
-import Image from "next/image";
+import Link from "next/link";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-      <div>
-        <ConnectButton />
-        {/* <Card className="w-[350px]">
-          <CardHeader>
-            <CardTitle>Create project</CardTitle>
-            <CardDescription>Deploy your new project in one-click.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form>
-              <div className="grid w-full items-center gap-4">
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Name of your project" />
-                </div>
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="framework">Framework</Label>
-                  <Select>
-                    <SelectTrigger id="framework">
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                      <SelectItem value="next">Next.js</SelectItem>
-                      <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                      <SelectItem value="astro">Astro</SelectItem>
-                      <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-            </form>
-          </CardContent>
-          <CardFooter className="flex justify-between">
-            <Button variant="outline">Cancel</Button>
-            <Button>Deploy</Button>
-          </CardFooter>
-        </Card> */}
+    <div className="bg-gray-300 min-h-screen mx-4 my-4 px-4 py-4 rounded-xl">
+      <div className="flex justify-between items-center">
+        <h1 className="font-bold text-2xl"> BlockFolio </h1>
+        <Button className="rounded-2xl px-8"> 
+            <Link href="/dashboard">
+                Enter the App 
+            </Link>
+        </Button>
       </div>
+      <div className="grid grid-cols-2 h-96 my-16">
+        <div className="col-span-1 flex justify-center items-center">
+          <Player className="w-[400px] h-[400px] pb-8" autoplay loop src="https://lottie.host/d0a08e1b-59b6-4d19-954f-8eacf4216b4d/E2dJL6rhwi.json">
+            
+          </Player>
+        </div>
+        <div className="col-span-1 bg-white rounded-xl px-8 py-8">
+          <h1 className="text-4xl pb-16"> Tracking Your Crypto Portfolio Makes Easy </h1>
+          <p className="pb-32"> Track your portfolio in real-time and get the latest price of your assets </p>
+          <div>
+            <Button className="rounded-2xl px-8"> 
+                <Link href="/dashboard">
+                  Enter the App 
+                </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   );
 }
