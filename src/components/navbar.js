@@ -1,10 +1,19 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
 import { CornerDownLeft } from "lucide-react"
-import CustomButton from "./customButton"
+import { usePicket } from "@picketapi/picket-react";
+
+import { Button } from "@/components/ui/button"
+import { Avatar } from "@/components/ui/avatar"
 
 export default function Navbar() {
+    const { isAuthenticating, isAuthenticated, authState, logout, login} = usePicket();
+    let walletAddress = '';
+
+    if (authState && authState.user) {
+        walletAddress = authState.user.walletAddress;
+    }
+
     return (
         <div className="flex py-4 px-4 bg-gray-300 border border-black items-center justify-between">
             <div className="flex items-center">
@@ -19,8 +28,16 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
-            <CustomButton/>
-            {/* <ConnectButton/> */}
+            <div>
+                {isAuthenticated ? (
+                    <div className="flex items-center">
+                        <p className="mr-4 truncate w-16"> {walletAddress} </p>
+                        <Button onClick={() => logout()}> Logout </Button>
+                    </div>
+                ) : (
+                    <Button onClick={() => login()}> Login With Wallet </Button>
+                )}
+            </div>
         </div>
     )
 }
